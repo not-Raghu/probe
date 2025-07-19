@@ -22,19 +22,11 @@ type Employee struct {
 
 // if(e1.isPaid){
 
-// }
+//
 
 // e1 := Employee{1, "raghu", false, 18}
 // p1 := &e1
 // p1.name = "not-raghu"
 // fmt.Println(p1)
 
-// }
-
-var ( 
-  e1 = Employee{1,"r1",false,}	
-	
-)
-// func main(){
-// 
 // }
