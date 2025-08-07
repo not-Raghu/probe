@@ -23,7 +23,7 @@ func (x MyInt) printX() {
 	fmt.Print(x)
 }
 
-func main() {
-	i := MyInt(1)
-	i.printX()
-}
+// func main() {
+// 	i := MyInt(1)
+// 	i.printX()
+// }

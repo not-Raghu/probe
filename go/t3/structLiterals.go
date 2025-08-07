@@ -14,3 +14,16 @@ var (
 // func main() {
 // 	fmt.Println(v1, p, v2, v3) //*p prints the value
 // }
+
+// func main() {
+// 	v := Vertex{Y: 10, X: 20}
+// 	fmt.Println(v)
+// }
+
+// var (
+// 	pow = []int{1, 2, 3}
+// )
+
+// func main() {
+// 	fmt.Println(pow)
+// }

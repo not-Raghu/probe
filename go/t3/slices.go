@@ -77,3 +77,18 @@ package main
 // 	s = append(s, 1, 23, 3, 4, 5, 5)
 // 	fmt.Println(s)
 // }
+
+// func main() {
+
+// 	var nums []int
+// 	if nums == nil {
+// 		fmt.Println(nil)
+// 	}
+// }
+
+// func main() {
+// 	var nums = make([]int, 3, 4)
+// 	var nums2 = make([]int, 3, 4)
+// 	copy(nums, nums2)
+// 	fmt.Print(nums)
+// }

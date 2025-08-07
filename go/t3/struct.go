@@ -1,11 +1,11 @@
 package main
 
-type Employee struct {
-	id     int
-	name   string
-	isPaid bool
-	age    int
-}
+// type Employee struct {
+// 	id     int
+// 	name   string
+// 	isPaid bool
+// 	age    int
+// }
 
 // func main() {
 // 	e1 := Employee{1, "raghu", false, 18}
@@ -29,4 +29,17 @@ type Employee struct {
 // p1.name = "not-raghu"
 // fmt.Println(p1)
 
+// }
+
+type human struct {
+	name  string
+	age   int
+	class int
+}
+
+// func main() {
+// 	h1 := human{"raghu", 18, 14}
+// 	fmt.Println(h1.name)
+// 	fmt.Println(h1.age)
+// 	fmt.Println(h1.class)
 // }
