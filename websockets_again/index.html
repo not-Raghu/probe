@@ -5,23 +5,18 @@
 </head>
 <body>
   <h1>WebSocket Test</h1>
+  <div id="count">count</div>
   <script>
     const socket = new WebSocket('ws://localhost:8000');
 
     socket.addEventListener('open', function () {
       console.log('Connected to WebSocket server');
-      socket.send('Hello from the browser!');
     });
 
     socket.addEventListener('message',(msg)=>{
-        console.log(msg.data)
+      document.getElementById("count").textContent = msg.data
     })
 
-
-    setTimeout(()=>{
-        socket.close(1000,"i want to close")
-    },2000)
-    
   </script>
 </body>
 </html>
