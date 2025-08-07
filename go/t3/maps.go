@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // func main() {
 // 	m := make(map[string]int)
 // 	m["kim"] = 0
@@ -21,11 +19,26 @@ import "fmt"
 
 // }
 
-func main() {
-	m := make(map[int]int)
-	m[1] = 12
-	m[2] = 23
-	for i := range m {
-		fmt.Println(m[i])
-	}
-}
+// func main() {
+// 	m := make(map[int]int)
+// 	m[1] = 12
+// 	m[2] = 23
+// 	for i := range m {
+// 		fmt.Println(m[i])
+// 	}
+// }
+
+// func main() {
+// 	m := make(map[int]int)
+// 	m[1] = 1
+// 	m[2] = 2
+// 	delete(m, 1)
+// 	fmt.Println(m)
+// }
+
+// func main() {
+// 	m := make(map[int]int)
+// 	m[0] = 0
+// 	ele, ok := m[0]
+// 	fmt.Println(ele, ok)
+// }

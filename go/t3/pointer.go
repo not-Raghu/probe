@@ -20,3 +20,9 @@ package main
 // 	p3 := &a[3]
 // 	fmt.Print(p1, p2, p3)
 // }
+
+// func main() {
+// 	i := 3
+// 	p := &i
+// 	fmt.Printf("%T", p)
+// }
