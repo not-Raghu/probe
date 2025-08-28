@@ -1,36 +1,38 @@
-import Redis from "ioredis";
-import { config } from "dotenv";
-import express from "express";
-config();
+function idToShortURL(n) 
+{
 
-const app = express();
-const client = new Redis(process.env.REDIS_URL);
+    let map = "abcdefghijklmnopqrstuvwxyzABCDEF"
+    "GHIJKLMNOPQRSTUVWXYZ0123456789";
 
-app.post("/put", (_, res) => {
-  const data = redisPut();
-  return res.json({
-    data,
-  });
-});
+    let shorturl = [];
 
-app.get("/delete", (_, res) => {
-  const data = redisDelete();
-  return res.json({
-    data,
-  });
-});
+    while (n) 
+    {
+        shorturl.push(map[n % 62]);
+        n = Math.floor(n / 62);
+    }
 
+    shorturl.reverse();
 
-async function redisPut() {
-  const data = await client.set("data", 1);
-  return data;
+    return shorturl.join("");
 }
 
-async function redisDelete() {
-  const data = await client.del("data");
-  return data;
+function shortURLtoID(shortURL) {
+    let id = 0;
+
+    for (let i = 0; i < shortURL.length; i++) {
+        if ('a' <= shortURL[i] && shortURL[i] <= 'z')
+            id = id * 62 + shortURL[i].charCodeAt(0) - 'a'.charCodeAt(0);
+        if ('A' <= shortURL[i] && shortURL[i] <= 'Z')
+            id = id * 62 + shortURL[i].charCodeAt(0) - 'A'.charCodeAt(0) + 26;
+        if ('0' <= shortURL[i] && shortURL[i] <= '9')
+            id = id * 62 + shortURL[i].charCodeAt(0) - '0'.charCodeAt(0) + 52;
+    }
+    return id;
 }
 
-app.listen(3000, () => {
-  console.log("server running on port 3000");
-});
+
+let n = 12345;
+let shorturl = idToShortURL(n);
+document.write("Generated short url is " + shorturl + "<br>");
+document.write("Id from url is " + shortURLtoID(shorturl));

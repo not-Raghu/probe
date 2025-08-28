@@ -5,20 +5,31 @@ import (
 	"net/http"
 )
 
-func main() {
+// func main() {
+// 	cmd := exec.Command("cat", "main.go")
+// 	out, err := cmd.Output()
+// 	if err != nil {
+// 		log.Panic(err)
+// 	}
+// 	fmt.Print(string(out))
+// }
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(200)
-		log.Print(r.URL)
-		res := []byte("nothing at all")
-		w.Write(res)
+func main() {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/yes", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("yes route"))
+
 	})
 
-	port := ":4242"
-	err := http.ListenAndServe(port, nil)
+	mux.HandleFunc("/no", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("no route"))
+	})
 
-	if err != nil {
-		log.Fatal("error running server")
+	mux.HandleFunc("/no/yes", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("no yes route"))
+	})
+
+	if http.ListenAndServe(":3000", mux) != nil {
+		log.Fatal("fatal error runing the server ")
 	}
-
 }
