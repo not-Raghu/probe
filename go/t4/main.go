@@ -2,55 +2,52 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-	"os"
 )
 
 // func main() {
-// 	cmd := exec.Command("cat", "main.go")
-// 	out, err := cmd.Output()
-// 	if err != nil {
-// 		log.Panic(err)
-// 	}
-// 	fmt.Print(string(out))
+
+// 	router := gin.Default()
+
+// 	router.GET("/", func(c *gin.Context) {
+// 		c.String(200, "%s", "hello there")
+// 	})
+
+// 	router.Run(":3000")
 // }
 
-func main() {
-	mux := http.NewServeMux()
+// func hijack(w http.ResponseWriter, r *http.Request) {
+// 	hj := w.(http.Hijacker)
 
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		args := os.Args
-		fmt.Print(args)
-		fmt.Print(args[0])
-		fmt.Print(args[1])
-		fmt.Print(args[2])
-		w.Write([]byte(args[0] + " " + args[1] + " " + args[2]))
+// 	if err != nil {
+// 		fmt.Print(err)
+// 	}
+// 	conn, buff, err := hj.Hijack()
 
-	})
+// }
 
-	mux.HandleFunc("/yes", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("yes route"))
+func not_closure() int {
+	count := 0
 
-	})
-
-	mux.HandleFunc("/no", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("first no route"))
-		w.Write([]byte("second no route"))
-	})
-
-	mux.HandleFunc("/no/yes", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("no yes route"))
-	})
-
-	go main2()
-	http.ListenAndServe(":3000", mux)
-
+	count++
+	return count
 }
 
-func main2() {
-	mux2 := http.NewServeMux()
-	mux2.HandleFunc("/mux2", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("this is mux 2 route"))
-	})
-	http.ListenAndServe(":3001", mux2)
+func closure() func() int {
+	count := 0
+	return func() int {
+		count++
+		return count
+	}
+}
+
+func main() {
+	closure := closure()
+
+	closure()
+	closure()
+	value := closure()
+	fmt.Println(value)
+
+	count := not_closure()
+	fmt.Print(count)
 }
